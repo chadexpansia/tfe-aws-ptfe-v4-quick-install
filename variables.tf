@@ -1,14 +1,14 @@
 variable "aws_region" {
   description = "The location of where TFE will be installed"
-  default = ""
+  default     = ""
 }
 
 variable "AWS_ACCESS_KEY" {
-  
+
 }
 
 variable "AWS_SECRET_KEY" {
-  
+
 }
 
 ################################################

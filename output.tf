@@ -3,7 +3,7 @@
 # }
 
 output "west_vpc" {
-    value = module.west-tfe.tfe_vpc_id
+  value = module.west-tfe.tfe_vpc_id
 }
 
 # output "eu_private_key" {

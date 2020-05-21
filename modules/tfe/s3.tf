@@ -79,21 +79,21 @@ data "template_file" "instance_role_policy" {
 }
 
 resource "aws_iam_role" "tfe_instance_role" {
-  name               = "${var.friendly_name_prefix}-tfe-instance-role-${data.aws_region.current.name}"#-${random_string.key_name.result}"
-  path               = "/"
-  assume_role_policy = file("${path.module}/templates/tfe-instance-role.json")
+  name                  = "${var.friendly_name_prefix}-tfe-instance-role-${data.aws_region.current.name}" #-${random_string.key_name.result}"
+  path                  = "/"
+  assume_role_policy    = file("${path.module}/templates/tfe-instance-role.json")
   force_detach_policies = true
-  tags = merge({ Name = "${var.friendly_name_prefix}-tfe-instance-role" }, var.common_tags)
+  tags                  = merge({ Name = "${var.friendly_name_prefix}-tfe-instance-role" }, var.common_tags)
 }
 
 resource "aws_iam_role_policy" "tfe_instance_role_policy" {
-  name   = "${var.friendly_name_prefix}-tfe-instance-role-policy-${data.aws_region.current.name}"#-${random_string.key_name.result}"
+  name   = "${var.friendly_name_prefix}-tfe-instance-role-policy-${data.aws_region.current.name}" #-${random_string.key_name.result}"
   policy = var.kms_key_arn != "" ? data.template_file.instance_role_policy_kms[0].rendered : data.template_file.instance_role_policy[0].rendered
   role   = aws_iam_role.tfe_instance_role.id
 }
 
 resource "aws_iam_instance_profile" "tfe_instance_profile" {
-  name = "${var.friendly_name_prefix}-tfe-instance-profile-${data.aws_region.current.name}"#-${random_string.key_name.result}"
+  name = "${var.friendly_name_prefix}-tfe-instance-profile-${data.aws_region.current.name}" #-${random_string.key_name.result}"
   path = "/"
   role = aws_iam_role.tfe_instance_role.name
 }

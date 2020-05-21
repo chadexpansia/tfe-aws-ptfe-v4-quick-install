@@ -1,6 +1,6 @@
 variable "aws_region" {
   description = "The location of where TFE will be installed"
-  default = ""
+  default     = ""
 }
 
 ################################################
@@ -130,8 +130,8 @@ variable "ssh_key_pair" {
   default     = ""
 }
 
-variable "aws_iam_instance_profile"{
-  default     = ""
+variable "aws_iam_instance_profile" {
+  default = ""
 }
 ################################################
 # Compute

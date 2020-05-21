@@ -159,7 +159,7 @@ resource "aws_autoscaling_group" "tfe_asg" {
   min_size                  = 1
   max_size                  = 1
   desired_capacity          = 1
-  vpc_zone_identifier       = module.tfe-vpc.public_subnets#var.ec2_subnet_ids
+  vpc_zone_identifier       = module.tfe-vpc.public_subnets #var.ec2_subnet_ids
   health_check_grace_period = 600
   health_check_type         = "ELB"
 
@@ -186,7 +186,7 @@ resource "aws_lb" "tfe_alb" {
     aws_security_group.tfe_outbound_allow.id
   ]
 
-  subnets = module.tfe-vpc.public_subnets#var.alb_subnet_ids
+  subnets = module.tfe-vpc.public_subnets #var.alb_subnet_ids
 
   tags = merge({ Name = "${var.friendly_name_prefix}-tfe-alb" }, var.common_tags)
 }
@@ -284,7 +284,7 @@ resource "aws_lb_target_group" "tfe_tg_8800" {
 ################################################
 resource "aws_db_subnet_group" "tfe_rds_subnet_group" {
   name       = "${var.friendly_name_prefix}-tfe-db-subnet-group"
-  subnet_ids = module.tfe-vpc.public_subnets#var.rds_subnet_ids
+  subnet_ids = module.tfe-vpc.public_subnets #var.rds_subnet_ids
 
   tags = merge(
     { Name = "${var.friendly_name_prefix}-tfe-db-subnet-group" },
@@ -300,8 +300,8 @@ resource "random_password" "rds_password" {
 resource "random_string" "key_name" {
   length  = 16
   special = false
-  lower = true
-  upper = false
+  lower   = true
+  upper   = false
 }
 
 resource "aws_db_instance" "tfe_rds" {
